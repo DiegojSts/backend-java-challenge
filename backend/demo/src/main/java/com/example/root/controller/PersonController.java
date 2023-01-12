@@ -20,12 +20,23 @@ public class PersonController {
         this.personService = personService;
     }
 
+    //Retorna todos os cadastros do banco
     @GetMapping
     public List<Person> getAllPerson() {
         return personService.getAllPerson();
     }
 
+    //Busca um cadastro por id
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Person> getPersonById(@PathVariable("id") Long id) {
+
+        Person person = personService.findPersonById(id);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+
+    }
+
+    //Cadastro de novos usuários
     @PostMapping(path = "/save")
     public ResponseEntity<Person> addPerson(@RequestBody Person person) {
         try {
