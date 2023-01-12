@@ -15,10 +15,6 @@ public class Adress implements Serializable {
     private String zipcode;
     private String city;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
-
     public Adress() {
     }
 
