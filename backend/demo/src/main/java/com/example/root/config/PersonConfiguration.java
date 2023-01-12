@@ -41,8 +41,6 @@ public class PersonConfiguration {
             person.setAdress(List.of(adress1, adress2));
             personRepository.saveAll(List.of(person));
 
-
-
         };
     }
 }
