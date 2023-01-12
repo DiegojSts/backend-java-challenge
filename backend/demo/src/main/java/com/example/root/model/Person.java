@@ -20,16 +20,14 @@ public class Person implements Serializable {
 
     @NotBlank(message = "Nome é obrigatório!")
     private String name;
+
     @NotNull
     @Past
     private LocalDate birthDate;
 
-    @OneToMany(
-            mappedBy = "person",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
+    @OneToMany(targetEntity = Adress.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_adress_fk", referencedColumnName = "id")
+//    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
     private List<Adress> adress = new ArrayList<>();
 
     public Person() {
@@ -39,6 +37,11 @@ public class Person implements Serializable {
         this.name = name;
         this.birthDate = birthDate;
         this.adress = adress;
+    }
+
+    public Person(String name, LocalDate birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
