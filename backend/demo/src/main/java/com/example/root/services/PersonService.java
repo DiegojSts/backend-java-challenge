@@ -1,5 +1,6 @@
 package com.example.root.services;
 
+import com.example.root.model.Adress;
 import com.example.root.model.Person;
 import com.example.root.repository.PersonRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -31,5 +32,14 @@ public class PersonService {
         if(!person.isPresent())
             throw new IllegalArgumentException("Pessoa de ID " + id + " não foi encontrada.");
         return person.get();
+    }
+
+    public List<Adress> findPersonAdressById(Long id) {
+        Optional<Person> person = personRepository.findById(id);
+
+        if(!person.isPresent())
+            throw new IllegalArgumentException("Endereço de ID " + id + " não foi encontrada.");
+
+        return person.get().getAdress();
     }
 }
