@@ -1,10 +1,10 @@
 package com.example.root.model;
 
+import com.example.root.custom_annotation_handler.ValidAdressList;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,13 +22,14 @@ public class Person implements Serializable {
     private String name;
 
     @NotNull
-    @Past
+    @Past(message = "Data de aniversário não pode ser futura!")
     private LocalDate birthDate;
 
     @OneToMany(targetEntity = Adress.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "person_adress_fk", referencedColumnName = "id")
-//    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
-    private List<Adress> adress = new ArrayList<>();
+    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
+//    @ValidAdressList
+    private List<@Valid Adress> adress = new ArrayList<>();
 
     public Person() {
     }
