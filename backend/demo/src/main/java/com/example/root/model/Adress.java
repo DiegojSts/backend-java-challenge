@@ -1,5 +1,7 @@
 package com.example.root.model;
 
+import com.example.root.custom_annotation_handler.ValidAdressList;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
