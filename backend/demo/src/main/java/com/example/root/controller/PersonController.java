@@ -1,16 +1,14 @@
 package com.example.root.controller;
-
 import com.example.root.model.Adress;
 import com.example.root.model.Person;
-
 import com.example.root.services.PersonService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -68,4 +66,14 @@ public class PersonController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping(path = "/update/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable("id") Long id, @Valid @RequestBody Person person) {
+        Person updatedPerson = personService.updatePerson(id, person);
+        if (updatedPerson == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
+    }
+
 }
