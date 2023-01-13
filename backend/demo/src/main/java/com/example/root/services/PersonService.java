@@ -3,8 +3,7 @@ package com.example.root.services;
 import com.example.root.model.Adress;
 import com.example.root.model.Person;
 import com.example.root.repository.PersonRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,4 +41,19 @@ public class PersonService {
 
         return person.get().getAdress();
     }
+
+    public Person updatePerson(Long id, Person person) {
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        if(!optionalPerson.isPresent())
+            throw new IllegalArgumentException("Pessoa de ID " + id + " não foi encontrada.");
+
+        Person existingPerson = optionalPerson.get();
+        existingPerson.setName(person.getName());
+        existingPerson.setBirthDate(person.getBirthDate());
+        existingPerson.setAdress(person.getAdress());
+
+        return personRepository.save(existingPerson);
+    }
+
+
 }
