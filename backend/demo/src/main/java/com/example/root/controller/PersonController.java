@@ -55,16 +55,9 @@ public class PersonController {
     //Cadastro de novos usuários
     @PostMapping(path = "/save")
     public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
-        try {
             Person newPerson = personService.addPerson(person);
             return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
 
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
 
     @PutMapping(path = "/update/{id}")
