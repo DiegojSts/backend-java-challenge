@@ -20,16 +20,18 @@ public class PersonConfiguration {
         return args -> {
             Adress adress1 = new Adress(
                     "M.Navarro",
-                    "Ba",
+                    "SP",
                     "000",
-                    "SSA"
+                    "Sao Paulo",
+                    true
             );
 
             Adress adress2 = new Adress(
                     "Amazonas",
                     "Ba",
                     "333",
-                    "SSA"
+                    "Salvador",
+                    false
             );
 
 
