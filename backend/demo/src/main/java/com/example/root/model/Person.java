@@ -1,6 +1,8 @@
 package com.example.root.model;
 
 import com.example.root.custom_annotation_handler.ValidAdressList;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -9,6 +11,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 @Entity
 @Table(name = "Person")
@@ -25,11 +29,15 @@ public class Person implements Serializable {
     @Past(message = "Data de aniversário não pode ser futura!")
     private LocalDate birthDate;
 
-    @OneToMany(targetEntity = Adress.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_adress_fk", referencedColumnName = "id")
-    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "person_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @OneToMany(targetEntity = Adress.class,cascade = CascadeType.ALL)
+//    @JoinColumn(name = "person_adress_fk", referencedColumnName = "id")
+//    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
 //    @ValidAdressList
-    private List<@Valid Adress> adress = new ArrayList<>();
+//    private List<@Valid Adress> adress = new ArrayList<>();
+    private List<Adress> adress = new ArrayList<>();
 
     public Person() {
     }
@@ -43,6 +51,13 @@ public class Person implements Serializable {
     public Person(String name, LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;
+    }
+
+    public Person(Person person, Long id){
+        this.id = id;
+        this.name = person.getName();
+        this.birthDate = person.getBirthDate();
+        this.adress = person.getAdress();
     }
 
     public Long getId() {
@@ -73,7 +88,18 @@ public class Person implements Serializable {
         return adress;
     }
 
+
     public void setAdress(List<Adress> adress) {
         this.adress = adress;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", adress=" + adress +
+                '}';
     }
 }
