@@ -42,7 +42,7 @@ public class PersonService {
 
         Optional<Person> person = personRepository.findById(id);
         if(!person.isPresent())
-            throw new IllegalArgumentException("Pessoa de ID " + id + " não foi encontrada.");
+            throw new BadRequestException("Pessoa de ID " + id + " não foi encontrada.");
         return person.get();
     }
 
