@@ -1,6 +1,8 @@
 package com.example.root.model;
 
 import com.example.root.custom_annotation_handler.ValidAdressList;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,14 +19,21 @@ public class Adress implements Serializable {
     private String zipcode;
     private String city;
 
+    private boolean mainAdress;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    Person person;
+
     public Adress() {
     }
 
-    public Adress(String streetAdress, String state, String zipcode, String city) {
+    public Adress(String streetAdress, String state, String zipcode, String city, boolean mainAdress) {
         this.streetAdress = streetAdress;
         this.state = state;
         this.zipcode = zipcode;
         this.city = city;
+        this.mainAdress = mainAdress;
     }
 
     public Long getId() {
@@ -65,5 +74,33 @@ public class Adress implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public boolean isMainAdress() {
+        return mainAdress;
+    }
+
+    public void setMainAdress(boolean mainAdress) {
+        this.mainAdress = mainAdress;
+    }
+
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person) {
+//        this.person = person;
+//    }
+
+    @Override
+    public String toString() {
+        return "Adress{" +
+                "id=" + id +
+                ", streetAdress='" + streetAdress + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", city='" + city + '\'' +
+                ", mainAdress=" + mainAdress +
+                '}';
     }
 }
