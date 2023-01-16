@@ -29,7 +29,6 @@ public class PersonService {
 
     }
 
-
     public List<Person> getAllPerson() {
          return personRepository.findAll();
     }
@@ -42,17 +41,17 @@ public class PersonService {
         return person.get();
     }
 
-    public List<Adress> findPersonAdressById(Long id) {
+    public List<Adress> findPersonAdressById(Long id) throws NotFoundException{
         Optional<Person> person = Optional.ofNullable(personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Endereço de ID" + id + "não foi encontrado.")));
 
         return person.get().getAdress();
     }
 
-    public Person updatePerson(Long id, Person person) {
+    public Person updatePerson(Long id, Person person) throws  NotFoundException{
 
         Person existingPerson = personRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Pessoa de ID" + id + "não foi encontrada."));
+                .orElseThrow(() -> new NotFoundException("Pessoa de ID" + id + "não foi encontrada."));
 
         existingPerson.setName(person.getName());
         existingPerson.setBirthDate(person.getBirthDate());
