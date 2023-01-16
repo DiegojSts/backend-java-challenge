@@ -79,7 +79,7 @@ class PersonServiceTest {
     }
 
     //TODO
-    @DisplayName("JUnit test to verify if birthdate is future")
+    @DisplayName("verify if birthdate is future")
     @Test
     void itShouldNotSaveIfDateIsfuture() {
         //given
@@ -93,7 +93,7 @@ class PersonServiceTest {
         verify(personRepository, never()).save(any());
     }
 
-    @DisplayName("JUnit to get all persons with success")
+    @DisplayName("get all persons with success")
     @Test
     void getAllPersonWithSuccess() {
         //given
@@ -115,7 +115,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("JUnit test to get a person by id with success")
+    @DisplayName("get a person by id with success")
     public void findPersonByIdSuccess() {
         //given
         Long id = 1L;
@@ -137,7 +137,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("JUnit to test if given an ID that doesnt exists throw a NotFoundException")
+    @DisplayName("if a ID doesn't exist throw a NotFoundException")
     public void itShouldThwrowErrorIfPersonIdDoesntExist() {
         //given
         Long id = 1L;
