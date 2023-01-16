@@ -25,19 +25,16 @@ public class Person implements Serializable {
     @NotBlank(message = "Nome é obrigatório!")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Data de nascimento é obrigatório")
     @Past(message = "Data de aniversário não pode ser futura!")
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "person_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-//    @OneToMany(targetEntity = Adress.class,cascade = CascadeType.ALL)
-//    @JoinColumn(name = "person_adress_fk", referencedColumnName = "id")
-//    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
+    @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
 //    @ValidAdressList
-//    private List<@Valid Adress> adress = new ArrayList<>();
-    private List<Adress> adress = new ArrayList<>();
+    private List<@Valid Adress> adress = new ArrayList<>();
 
     public Person() {
     }
