@@ -5,6 +5,9 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -14,9 +17,14 @@ public class Adress implements Serializable {
     @SequenceGenerator(name = "adress_sequence", sequenceName = "adress_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "adress_sequence")
     private Long id;
+
+    @NotEmpty(message = "Rua é obrigatório!")
     private String streetAdress;
+    @NotEmpty(message = "Estado é obrigatório!")
     private String state;
+    @NotEmpty(message = "CEP é obrigatório!")
     private String zipcode;
+    @NotEmpty(message = "Cidade é obrigatório!")
     private String city;
 
     private boolean mainAdress;
