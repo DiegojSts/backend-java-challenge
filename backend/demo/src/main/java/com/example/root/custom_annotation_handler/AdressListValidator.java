@@ -12,6 +12,6 @@ public class AdressListValidator implements ConstraintValidator <ValidAdressList
     @Override
     public boolean isValid(List<? extends Object> value, ConstraintValidatorContext context) {
         System.out.println(value);
-        return !(!CollectionUtils.isEmpty(value) || value == null || value.isEmpty() || value.stream().anyMatch(Objects::isNull));
+        return !(value == null || value.isEmpty() || value.stream().anyMatch(Objects::isNull));
     }
 }
