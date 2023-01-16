@@ -31,13 +31,12 @@ public class PersonController {
     //Busca um cadastro por id
     @GetMapping(path = "/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable("id") Long id) {
-
         Person person = personService.findPersonById(id);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
     @GetMapping(path = "adress/{id}")
-    public ResponseEntity<List<Adress>> finPersonAdressById(@PathVariable("id") Long id) {
+    public ResponseEntity<List<Adress>> findPersonAdressById(@PathVariable("id") Long id) {
         try {
 
             List<Adress> adress = personService.findPersonAdressById(id);
@@ -55,6 +54,7 @@ public class PersonController {
     //Cadastro de novos usuários
     @PostMapping(path = "/save")
     public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
+
             Person newPerson = personService.addPerson(person);
             return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
 
