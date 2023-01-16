@@ -10,7 +10,7 @@ public class DataBuilder {
     public static Adress createSingleAdress(){
         return  new Adress(
                 "Address1",
-                "SP",
+                "10",
                 "000",
                 "Sao Paulo",
                 true
@@ -21,7 +21,7 @@ public class DataBuilder {
 
         Adress adress1 = new Adress(
                 "Address1",
-                "SP",
+                "11",
                 "000",
                 "Sao Paulo",
                 true
@@ -29,7 +29,7 @@ public class DataBuilder {
 
         Adress adress2 = new Adress(
                 "Address2",
-                "SC",
+                "367",
                 "000",
                 "Santa Catarina",
                 true
