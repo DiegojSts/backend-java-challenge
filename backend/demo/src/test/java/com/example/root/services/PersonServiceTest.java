@@ -37,7 +37,7 @@ class PersonServiceTest {
     @InjectMocks
     private PersonService personService;
 
-    @DisplayName("JUnit test for add a single Person with success")
+    @DisplayName("add a single Person with success")
     @Test
     void addPersonWithinSuccess() {
         //given
@@ -61,7 +61,7 @@ class PersonServiceTest {
 
     }
 
-    @DisplayName("JUnit test to verify if a person has only one main address")
+    @DisplayName("verify if a person has only one main address and throw a IllegalArgumentException if doesn't")
     @Test
     void itShouldThrowErrorWhenHaveMoreThanOneMainAdressTrue() {
         //given
