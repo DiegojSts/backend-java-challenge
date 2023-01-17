@@ -165,7 +165,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("updates a pre-existing person")
+    @DisplayName("updates a pre-existing person with success")
     void updatePersonWithSuccess() {
         // given
         Long id = 1L;
