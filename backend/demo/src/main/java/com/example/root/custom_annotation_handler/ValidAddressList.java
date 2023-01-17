@@ -12,8 +12,8 @@ import java.lang.annotation.*;
         ElementType.PARAMETER,
         ElementType.ANNOTATION_TYPE
 })
-@Constraint(validatedBy = AdressListValidator.class)
-public @interface ValidAdressList {
+@Constraint(validatedBy = AddressListValidator.class)
+public @interface ValidAddressList {
     String message() default "Deve existir ao menos 1 endereço e campos de endereço são obrigatórios!";
 
     Class<?>[] groups() default {};
