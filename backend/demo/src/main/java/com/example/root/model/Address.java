@@ -1,39 +1,46 @@
 package com.example.root.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Adress")
-public class Adress implements Serializable {
+@Table(name = "Address")
+public class Address implements Serializable {
     @Id
-    @SequenceGenerator(name = "adress_sequence", sequenceName = "adress_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "adress_sequence")
+    @SequenceGenerator(name = "address_sequence", sequenceName = "address_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
     private Long id;
+    @NotNull
     @NotEmpty(message = "Rua é obrigatório!")
-    private String streetAdress;
+    private String streetAddress;
+
+    @NotNull
     @NotEmpty(message = "Numero é obrigatório!")
     private String number;
+
+    @NotNull
     @NotEmpty(message = "CEP é obrigatório!")
     private String zipcode;
+    @NotNull
     @NotEmpty(message = "Cidade é obrigatório!")
     private String city;
 
-    private boolean mainAdress;
+    private boolean mainAddress;
 
     @ManyToOne
     @JoinColumn(name = "person_id")
     Person person;
 
-    public Adress() {
+    public Address() {
     }
 
-    public Adress(String streetAdress, String number, String zipcode, String city, boolean mainAdress) {
-        this.streetAdress = streetAdress;
+    public Address(String streetAddress, String number, String zipcode, String city, boolean mainAddress) {
+        this.streetAddress = streetAddress;
         this.number = number;
         this.zipcode = zipcode;
         this.city = city;
-        this.mainAdress = mainAdress;
+        this.mainAddress = mainAddress;
     }
 
     public Long getId() {
@@ -44,19 +51,19 @@ public class Adress implements Serializable {
         this.id = id;
     }
 
-    public String getStreetAdress() {
-        return streetAdress;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setStreetAdress(String streetAdress) {
-        this.streetAdress = streetAdress;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
-    public String getState() {
+    public String getNumber() {
         return number;
     }
 
-    public void setState(String number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -76,23 +83,23 @@ public class Adress implements Serializable {
         this.city = city;
     }
 
-    public boolean isMainAdress() {
-        return mainAdress;
+    public boolean isMainAddress() {
+        return mainAddress;
     }
 
-    public void setMainAdress(boolean mainAdress) {
-        this.mainAdress = mainAdress;
+    public void setMainAddress(boolean mainAddress) {
+        this.mainAddress = mainAddress;
     }
 
     @Override
     public String toString() {
-        return "Adress{" +
+        return "Address{" +
                 "id=" + id +
-                ", streetAdress='" + streetAdress + '\'' +
-                ", number='" + number + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+
                 ", zipcode='" + zipcode + '\'' +
                 ", city='" + city + '\'' +
-                ", mainAdress=" + mainAdress +
+                ", mainAddress=" + mainAddress +
                 '}';
     }
 }
