@@ -1,6 +1,6 @@
 //package com.example.root.config;
 //
-//import com.example.root.model.Adress;
+//import com.example.root.model.Address;
 //import com.example.root.model.Person;
 //import com.example.root.repository.PersonRepository;
 //import org.springframework.boot.CommandLineRunner;
@@ -18,7 +18,7 @@
 //    @Bean
 //    CommandLineRunner commandLineRunner (PersonRepository personRepository){
 //        return args -> {
-//            Adress adress1 = new Adress(
+//            Address address1 = new Address(
 //                    "M.Navarro",
 //                    "13",
 //                    "000",
@@ -26,7 +26,7 @@
 //                    true
 //            );
 //
-//            Adress adress2 = new Adress(
+//            Address address2 = new Address(
 //                    "Amazonas",
 //                    "12",
 //                    "333",
@@ -40,7 +40,7 @@
 //                    LocalDate.of(1997, Month.FEBRUARY, 1)
 //            );
 //
-//            person.setAdress(List.of(adress1, adress2));
+//            person.setAddress(List.of(address1, address2));
 //            personRepository.saveAll(List.of(person));
 //
 //        };
