@@ -1,56 +1,79 @@
 package com.example.root;
-import com.example.root.model.Adress;
+
+import com.example.root.model.Address;
 import com.example.root.model.Person;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
 public class DataBuilder {
 
-    public static Adress createSingleAdress(){
-        return  new Adress(
+    public static Address createSingleAddress() {
+        return new Address(
                 "Address1",
-                "10",
+                "13",
                 "000",
                 "Sao Paulo",
                 true
         );
     }
 
-    public static List<Adress> createTwoAdressesWithMainAdressTrue(){
+    public static Address createSingleAddress(String address,
+                                            String number,
+                                            String zipcode,
+                                            String city,
+                                            boolean mainAddress) {
+        return new Address(
+                address,
+                number,
+                zipcode,
+                city,
+                mainAddress
+        );
+    }
 
-        Adress adress1 = new Adress(
+    public static List<Address> createTwoAddressesWithMainAddressTrue() {
+
+        Address address1 = new Address(
                 "Address1",
-                "11",
+                "12",
                 "000",
                 "Sao Paulo",
                 true
         );
 
-        Adress adress2 = new Adress(
+        Address address2 = new Address(
                 "Address2",
-                "367",
+                "11",
                 "000",
                 "Santa Catarina",
                 true
         );
 
-        return List.of(adress1, adress2);
+        return List.of(address1, address2);
     }
 
-    public static Person createSinglePerson(){
-       return new Person(
-                "Robson Nunes",
+    public static Person createSinglePerson() {
+        return new Person(
+                "NewName",
                 LocalDate.of(2022, Month.DECEMBER, 30)
         );
     }
 
-
-    public static Person createSinglePerson(int futureDate){
-       return new Person(
+    public static Person createSinglePerson(int futureDate) {
+        return new Person(
                 "Robson Nunes",
                 LocalDate.of(futureDate, Month.DECEMBER, 30)
         );
+    }
+
+        public static Person createSinglePerson(String name, int year) {
+        return new Person(
+                name,
+                LocalDate.of(year, Month.APRIL, 3)
+        );
+
     }
 
 
