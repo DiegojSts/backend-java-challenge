@@ -1,6 +1,6 @@
 package com.example.root.controller;
 
-import com.example.root.model.Adress;
+import com.example.root.model.Address;
 import com.example.root.model.Person;
 import com.example.root.services.PersonService;
 
@@ -39,20 +39,11 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @GetMapping(path = "adress/{id}")
-    @ApiOperation(value = "Returns an adress by person id")
-    public ResponseEntity<List<Adress>> findPersonAdressById(@PathVariable("id") Long id) {
-        try {
-
-            List<Adress> adress = personService.findPersonAdressById(id);
-            return new ResponseEntity<>(adress, HttpStatus.OK);
-
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping(path = "/{id}/address")
+    @ApiOperation(value = "Returns an address by person id")
+    public ResponseEntity<List<Address>> findPersonAddressById(@PathVariable("id") Long id) {
+            List<Address> address = personService.findPersonAddressById(id);
+            return new ResponseEntity<>(address, HttpStatus.OK);
     }
 
     @PostMapping(path = "/save")
@@ -72,6 +63,13 @@ public class PersonController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/delete/{id}")
+    @ApiOperation(value = "Deletes a person by id")
+    public ResponseEntity<Person> deletePersonById(@PathVariable("id") Long id) {
+        personService.deletePersonById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
