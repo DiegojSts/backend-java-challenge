@@ -1,6 +1,6 @@
 package com.example.root.model;
 
-import com.example.root.custom_annotation_handler.ValidAdressList;
+import com.example.root.custom_annotation_handler.ValidAddressList;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -31,16 +31,16 @@ public class Person implements Serializable {
     @JoinColumn(name = "person_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @Size(min = 1, message = "Obrigatório ao menos 1 endereço!")
-//    @ValidAdressList
-    private List<@Valid Adress> adress = new ArrayList<>();
+//    @ValidAddressList
+    private List<@Valid Address> address = new ArrayList<>();
 
     public Person() {
     }
 
-    public Person(String name, LocalDate birthDate, List<Adress> adress) {
+    public Person(String name, LocalDate birthDate, List<Address> address) {
         this.name = name;
         this.birthDate = birthDate;
-        this.adress = adress;
+        this.address = address;
     }
 
     public Person(String name, LocalDate birthDate) {
@@ -52,7 +52,7 @@ public class Person implements Serializable {
         this.id = id;
         this.name = person.getName();
         this.birthDate = person.getBirthDate();
-        this.adress = person.getAdress();
+        this.address = person.getAddress();
     }
 
     public Long getId() {
@@ -79,13 +79,13 @@ public class Person implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public List<Adress> getAdress() {
-        return adress;
+    public List<Address> getAddress() {
+        return address;
     }
 
 
-    public void setAdress(List<Adress> adress) {
-        this.adress = adress;
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Person implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", birthDate=" + birthDate +
-                ", adress=" + adress +
+                ", address=" + address +
                 '}';
     }
 }
